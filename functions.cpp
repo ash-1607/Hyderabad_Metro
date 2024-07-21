@@ -57,7 +57,7 @@ vector<pair<string, int>> metroMap::shortestPath(string &src, string &dest){
         {
             string nbrstation = nbr.first;
             int newDistance = nbr.second + dist;
-            //cout<<"nbr.second "<<nbr.second<<endl<<endl;
+            // cout<<"nbr.second "<<nbr.second<<endl<<endl;
             // cout<<"New distance is "<<newDistance<<" for "<<statn<<" to "<<nbrstation<<endl;
             if(newDistance < distance[nbrstation])
             {
@@ -78,7 +78,7 @@ vector<pair<string, int>> metroMap::shortestPath(string &src, string &dest){
     while(curStation != src)
     {
         string nextStation = parent[curStation];
-        if(curStation != dest)  dist = network[curStation].neighbours[nextStation];
+        dist = network[curStation].neighbours[nextStation];
         route.push_back({curStation, dist});
         curStation = nextStation;
     }

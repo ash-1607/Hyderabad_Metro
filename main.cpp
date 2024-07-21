@@ -152,7 +152,7 @@ int main()
                         cout<<route1[i].first<<" --"<<route1[i].second<<"-- ";
                         dist1 += route1[i].second;
                     }
-                    
+                    // cout<<"first route printed"<<endl;
                     //print second route
                     for(int i=pathLen2-1; i>0; i--){
                         station curStation = HydMetro.network[route2[i].first];
@@ -161,7 +161,10 @@ int main()
 
                         //if line changes
                         if(curLine != line){
-                            cout<<endl<<endl<<"-> Switch to line "<<curLine<<" at "<<route2[i+1].first<<endl;
+                            string prevStation;
+                            if(i!=pathLen2-1)   prevStation = route2[i+1].first;
+                            else    prevStation = route1[1].first;
+                            cout<<endl<<endl<<"-> Switch to line "<<curLine<<" at "<<prevStation<<endl;
                             line = curLine;
                         }
 
@@ -169,10 +172,12 @@ int main()
                         dist2 += route2[i].second;
                     }
                     if(HydMetro.network[route2[0].first].lines.size()<=1 && HydMetro.network[route2[0].first].lines[0]!=line){
+                        curLine = HydMetro.network[route2[0].first].lines[0];       //Error rectified
                         cout<<endl<<endl<<"-> Switch to line "<<curLine<<" at "<<route2[1].first<<endl;
                     }
                     cout<<route2[0].first;
-                    cout<<endl<<endl<<"Total distance is: "<<dist1+dist2<<endl<<endl;
+                    // cout<<endl<<endl<<"Total hmm distance is: "<<dist1+dist2<<endl<<endl;
+                    // cout<<"hehe "<<route2[1].second<<endl;
 
                     break;
                 }
@@ -182,6 +187,11 @@ int main()
                     vector<pair<string, int>> route = HydMetro.shortestPath(src, dest);
                     int pathLen = route.size();
                     int dist = 0;
+
+                    //Troubleshooting
+                    // for(auto it:route){
+                    //     cout<<"# "<<it.first<<" "<<it.second<<endl;
+                    // }
 
                     cout<<endl<<"== YOUR ROUTE =="<<endl<<endl;
 
